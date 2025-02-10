@@ -6,6 +6,8 @@ import Header from '../../components/Header/DashboardHeader';
 import  { useState } from 'react';
 
 
+
+
 const BlockPriceModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
   
@@ -214,10 +216,10 @@ const Dashboard = () => {
             <p className="text-center text-gray-500 mb-6">Lacus amet, elementum ex. Ut venenatis eget urna, amet</p>
             
             <div className="grid grid-cols-5 gap-4">
-              {stats.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-sm text-gray-600 mb-2">{stat.label}</div>
-                  <div className="font-mono text-xl font-bold">{stat.value}</div>
+            {stats.map((stat, index) => (
+                <div key={index} className="text-center  border-1 border-slate-400 rounded-sm">
+                  <div className="text-sm text-gray-900 mb-2 ">{stat.label}</div>
+                  <div className="font-mono text-2xl font-bold rounde">{stat.value}</div>
                 </div>
               ))}
             </div>
@@ -274,6 +276,13 @@ const Dashboard = () => {
             <span>Block Price info</span>
           </div>
         </button>
+        <button className="flex items-center gap-3 bg-white px-6 py-3 rounded-full shadow-sm">
+        <div className="w-6 h-6 bg-yellow-400 rounded-full flex items-center justify-center">
+          <span className="font-bold">?</span>
+        </div>
+        <span>How to Mine</span>
+      </button>
+
       </div>
 
          {/* Modals */}
