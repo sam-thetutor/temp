@@ -6,6 +6,7 @@ import LandingPage from './pages/Landingpage/LandingPage'
 import LogoutPage from './pages/Landingpage/LogoutPage'
 import Dashboard from './pages/Welcome'
 import Profile from './pages/profile/Profile'
+import SearchResult from './pages/page/SearchResultPage'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -14,8 +15,9 @@ function App() {
     <>
       {/* <LandingPage/> */}
       {/* <LogoutPage/> */}
-      <Profile/>
+      {/* <Profile/> */}
       {/* <Dashboard/> */}
+      <SearchResult/>
     </>
   )
 }

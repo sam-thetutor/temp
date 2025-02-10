@@ -5,6 +5,7 @@ import { NotificationCarousel } from '../../components/notifications/Notificatio
 import Header from '../../components/Header/DashboardHeader';
 import  { useState } from 'react';
 import RIGDetails from '../../components/RiGDetails/Rigdetails';
+import RIGComparison from '../../components/RiGDetails/CompareRiG';
 
 
 
@@ -156,7 +157,7 @@ const LeaderboardModal = ({ isOpen, onClose }) => {
 };
 
 
-const Dashboard = () => {
+const SearchResult = () => {
   const stats = [
     { label: "Time Since Last Block:", value: "136" },
     { label: "Active Miners", value: "35" },
@@ -186,7 +187,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 pt-4 flex flex-col gap-6 ">
+      <div className="max-w-7xl mx-auto px-4 pt-4 flex flex-col gap-6  ">
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4  mx-8 ">
           {/* Last Winner Card */}
@@ -236,27 +237,9 @@ const Dashboard = () => {
 
 
         {/* Search Section */}
-        <div className="mb-16">
-          <div className="text-center text-gray-600 mb-3">Search BOB Address</div>
-          <div className="flex justify-center">
-            <div className="relative w-full max-w-xl">
-              <input
-                type="text"
-                placeholder="Enter Principal BOB Address"
-                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <div className="absolute right-0 top-0 h-full flex">
-                <button className="px-4 text-orange-400 font-medium">
-                  Paste
-                </button>
-                <button className="h-full px-4 bg-black text-white rounded-r-lg">
-                  <Search size={20} />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
+       
+       {/* <RIGDetails/> */}
+       <RIGComparison/>
 
         {/* Bottom Navigation */}
         <div className="flex justify-center gap-4">
@@ -310,4 +293,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default SearchResult;
