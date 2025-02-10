@@ -34,7 +34,7 @@ const LandingPage = () => {
         {/* Logo */}
         <div className="text-center mb-4">
           <img 
-            src="/public/images/logoo.png" 
+            src="images/logoo.png" 
             alt="BOBITS Logo" 
             className="h-12 mx-auto"
           />
@@ -84,7 +84,7 @@ const LandingPage = () => {
           <button className="bg-yellow-400 hover:bg-yellow-500 rounded-xl  pl-2 pr-8 py-3 transition-colors">
             <div className="flex items-center gap-2">
               <img 
-                src="/public/images/cartonn.png" 
+                src="images/cartonn.png" 
                 alt="mascot" 
                 className="w-10 h-10"
               />
