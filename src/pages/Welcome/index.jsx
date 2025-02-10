@@ -4,7 +4,7 @@ import { X, Copy } from 'lucide-react';
 import { NotificationCarousel } from '../../components/notifications/Notification';
 import Header from '../../components/Header/DashboardHeader';
 import  { useState } from 'react';
-
+import RIGDetails from '../../components/RiGDetails/Rigdetails';
 
 
 
@@ -165,9 +165,18 @@ const Dashboard = () => {
     { label: "Avg Block Burn", value: "262.23T" }
   ];
 
+  const [searchQuery, setSearchQuery] = useState('');
+  const [showRIGDetails, setShowRIGDetails] = useState(false);
   const [showPriceModal, setShowPriceModal] = useState(false);
   const [showLeaderboardModal, setShowLeaderboardModal] = useState(false);
+  const [showTopUpModal, setShowTopUpModal] = useState(false);
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery) {
+      setShowRIGDetails(true);
+    }
+  };
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 via-blue-50 to-pink-50/30">
       <Header/>
@@ -226,6 +235,7 @@ const Dashboard = () => {
           </div>
         </div>
 
+
         {/* Search Section */}
         <div className="mb-16">
           <div className="text-center text-gray-600 mb-3">Search BOB Address</div>
@@ -247,6 +257,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+
 
         {/* Bottom Navigation */}
         <div className="flex justify-center gap-4">
@@ -286,6 +297,8 @@ const Dashboard = () => {
       </div>
 
          {/* Modals */}
+      
+      </div>
       <BlockPriceModal 
         isOpen={showPriceModal} 
         onClose={() => setShowPriceModal(false)} 
@@ -294,7 +307,7 @@ const Dashboard = () => {
         isOpen={showLeaderboardModal} 
         onClose={() => setShowLeaderboardModal(false)} 
       />
-      </div>
+      
     </div>
   );
 };

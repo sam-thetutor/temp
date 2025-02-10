@@ -6,6 +6,9 @@ import LandingPage from './pages/Landingpage/LandingPage'
 import LogoutPage from './pages/Landingpage/LogoutPage'
 import Dashboard from './pages/Welcome'
 import Profile from './pages/profile/Profile'
+import SearchResult from './pages/page/SearchResultPage'
+import CompareResult from './pages/page/CompareResultPage'
+
 
 function App() {
   const [count, setCount] = useState(0)
