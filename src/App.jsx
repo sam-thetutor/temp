@@ -14,8 +14,8 @@ function App() {
     <>
       {/* <LandingPage/> */}
       {/* <LogoutPage/> */}
-      <Profile/>
-      {/* <Dashboard/> */}
+      {/* <Profile/> */}
+      <Dashboard/>
     </>
   )
 }
