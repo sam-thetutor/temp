@@ -85,7 +85,7 @@ const FundICPModal = ({ isOpen, onClose }) => {
         </div>
       </div>
     );
-  };
+  }; 
   
   const ProfileModal = ({ isOpen, onClose }) => {
     return (
@@ -96,11 +96,11 @@ const FundICPModal = ({ isOpen, onClose }) => {
       >
         <div className="p-4">
           <div className="flex items-center gap-3 mb-4 pb-2 border-b">
-          <div className="flex items-center rounded-full">
+          <div className="flex items-center rounded-full p-2">
         <img
           src="/images/profile.png"
           alt="BOBITS Logo"
-          className="h-8 object-contain"
+          className="h-8 object-contain rounded-full "
         />
       </div>
             <div>
