@@ -19,6 +19,10 @@ function App() {
       {/* <LogoutPage/> */}
       {/* <Profile/> */}
       <Dashboard/>
+      <Profile/>
+      {/* <Dashboard/> */}
+      {/* <CompareResult/> */}
+      {/* <SearchResult/> */}
     </>
   )
 }
