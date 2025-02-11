@@ -17,10 +17,10 @@ function App() {
     <>
       {/* <LandingPage/> */}
       {/* <LogoutPage/> */}
-      <Profile/>
+      {/* <Profile/> */}
       {/* <Dashboard/> */}
       {/* <CompareResult/> */}
-      {/* <SearchResult/> */}
+      <SearchResult/>
     </>
   )
 }
