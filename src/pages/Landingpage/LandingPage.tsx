@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NotificationCarousel } from '../../components/notifications/Notification';
+
 const LandingPage = () => {
   const [timeLeft, setTimeLeft] = useState({
     days: 2,
@@ -30,7 +31,7 @@ const LandingPage = () => {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Top Section */}
-      <div className="bg-gradient-to-b from-white to-blue-50 pb-2  pt-16   ">     
+      <div className="bg-gradient-to-b from-white via-blue-50 to-[#e8f0f5] pb-2 pt-16">     
         {/* Logo */}
         <div className="text-center mb-4">
           <img 
@@ -48,49 +49,54 @@ const LandingPage = () => {
         </div>
 
         <NotificationCarousel/>
-     
       </div>
 
-      {/* Main Content */}
-      <div className="flex-1 bg-gradient-to-br bg-[#122B3F]  p-8 py-4">
-        <div className="max-w-2xl mx-auto text-center">
-          {/* Timer Section */}
-          <div className="mb-2">
-            <h2 className="text-gray-300 text-lg mb-2">Next Halving in</h2>
-            <div className="flex justify-center items-baseline gap-2 text-white mb-2">
-              <div className="text-5xl font-light">{timeLeft.days}</div>
-              <div className="text-5xl font-light">:</div>
-              <div className="text-5xl font-light">{timeLeft.hours}</div>
-              <div className="text-5xl font-light">:</div>
-              <div className="text-5xl font-light">{timeLeft.minutes}</div>
-              <div className="text-5xl font-light">:</div>
-              <div className="text-5xl font-light">{timeLeft.seconds}</div>
+      {/* Main Content with exact gradient match */}
+      <div className="flex-1 relative">
+        {/* Primary gradient layer */}
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,#1c425f_0%,#1a2c3d_50%,#285449_100%)]"></div>
+        
+        {/* Content */}
+        <div className="relative z-10 p-8 py-4">
+          <div className="max-w-2xl mx-auto text-center">
+            {/* Timer Section */}
+            <div className="mb-2">
+              <h2 className="text-gray-300 text-lg mb-2">Next Halving in</h2>
+              <div className="flex justify-center items-baseline gap-2 text-white mb-2">
+                <div className="text-5xl font-light">{timeLeft.days}</div>
+                <div className="text-5xl font-light">:</div>
+                <div className="text-5xl font-light">{timeLeft.hours}</div>
+                <div className="text-5xl font-light">:</div>
+                <div className="text-5xl font-light">{timeLeft.minutes}</div>
+                <div className="text-5xl font-light">:</div>
+                <div className="text-5xl font-light">{timeLeft.seconds}</div>
+              </div>
+              <div className="flex justify-center gap-[3.8rem] text-sm">
+                <span className="text-yellow-400">Days</span>
+                <span className="text-yellow-400">Hours</span>
+                <span className="text-yellow-400">Minutes</span>
+                <span className="text-yellow-400">Seconds</span>
+              </div>
             </div>
-            <div className="flex justify-center gap-[3.8rem] text-sm">
-              <span className="text-yellow-400">Days</span>
-              <span className="text-yellow-400">Hours</span>
-              <span className="text-yellow-400">Minutes</span>
-              <span className="text-yellow-400">Seconds</span>
-            </div>
-          </div>
 
-          {/* Winning Price */}
-          <div className="mb-4">
-            <div className="text-gray-300 mb-2">Winning price</div>
-            <div className="text-yellow-400 text-4xl font-bold">$250</div>
-          </div>
-
-          {/* BOBITS Button */}
-          <button className="bg-yellow-400 hover:bg-yellow-500 rounded-xl  pl-2 pr-8 py-3 transition-colors">
-            <div className="flex items-center gap-2">
-              <img 
-                src="images/cartonn.png" 
-                alt="mascot" 
-                className="w-10 h-10"
-              />
-              <span className="text-black font-bold text-xl">BOBITS</span>
+            {/* Winning Price */}
+            <div className="mb-4">
+              <div className="text-gray-300 mb-2">Winning price</div>
+              <div className="text-yellow-400 text-4xl font-bold">$250</div>
             </div>
-          </button>
+
+            {/* BOBITS Button */}
+            <button className="bg-yellow-400 hover:bg-yellow-500 rounded-xl pl-2 pr-8 py-3 transition-colors">
+              <div className="flex items-center gap-2">
+                <img 
+                  src="images/cartonn.png" 
+                  alt="mascot" 
+                  className="w-10 h-10"
+                />
+                <span className="text-black font-bold text-xl">BOBITS</span>
+              </div>
+            </button>
+          </div>
         </div>
       </div>
     </div>

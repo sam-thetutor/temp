@@ -179,7 +179,13 @@ const CompareResult = () => {
     }
   };
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-blue-50 to-pink-50/30">
+    <>
+<div className="fixed inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-100 from-0% via-transparent to-pink-100"></div>
+        <div className="absolute inset-0 bg-gradient-to-tr from-green-100/50 from-0% via-transparent to-blue-100"></div>
+        <div className="absolute inset-0 backdrop-blur-sm"></div>
+      </div>
+    <div className="min-h-screen relative">
       <Header/>
 
       <div className=" py-2">
@@ -292,6 +298,7 @@ const CompareResult = () => {
       />
      
     </div>
+    </>
   );
 };
 

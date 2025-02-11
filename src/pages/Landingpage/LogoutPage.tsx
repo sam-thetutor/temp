@@ -20,7 +20,7 @@ const LogoutPage = () => {
   return (
     <>
       {/* Fixed gradient background */}
-    
+      
 
       {/* Scrollable content */}
       <div className="relative min-h-screen">
