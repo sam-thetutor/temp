@@ -45,7 +45,7 @@ const RIGDetails = ({ address }) => {
           </button>
           <h2 className="text-lg font-medium">RIG Details</h2></div>
           
-          <div className='bg-green-400'><div className="text-gray-600 text-sm">of {address} 6imfd-3yaaa-aaaas-akxca-cai</div></div>
+          <div className=''><div className="text-gray-600 text-sm">of {address} 6imfd-3yaaa-aaaas-akxca-cai</div></div>
           
         </div>
         <div className="flex items-center gap-4">

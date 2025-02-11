@@ -1,5 +1,6 @@
 import React from 'react';
-import { ArrowLeft, ChevronsUpDown } from 'lucide-react';
+import { ArrowLeft, ChevronsUpDown,Heart } from 'lucide-react';
+
 
 const RIGComparison = () => {
   const opponentStats = [
@@ -45,7 +46,7 @@ const RIGComparison = () => {
   const Table = ({ data, type }) => (
     <div className="w-1/2 ">
       <div className={`text-lg font-medium mb-4 ${type === "Opponent" ? "text-orange-600" : "text-green-600"}`}>{type}</div>
-      <table className="w-full border border-black rounded-lg overflow-hidden bg-white">
+      <table className="w-full border border-black rounded-lg overflow-hidden bg-white border-b">
         <thead>
           <tr>
             <HeaderCell title="Cycles Burned/Round (T)" type={type} />
@@ -76,14 +77,33 @@ const RIGComparison = () => {
       </div>
     </div>
   );
-
+  const hashId = "yuckme-hsnqs-s3pse-leofy-hekpg-4pfnq-rdthu-jx4pf-5jwj5-w5ifp-jqe";
   return (
     <div className="p-6">
-      <div className="flex items-center gap-2 mb-6">
-        <button className="p-1 hover:bg-gray-100 rounded-full">
-          <ArrowLeft className="w-5 h-5" />
+        {/* Header */}
+        <div className="flex items-center justify-between px-4 py-3   my-4">
+        <div className="flex items-center gap-2">
+          <button className="p-2 hover:bg-gray-100 rounded-full">
+            <div className='p-1 rounded-full bg-black'>
+            <ArrowLeft className="w-5 h-5  text-white" />
+            </div>
+            
+          </button>
+          
+          <div>
+            <h1 className="text-lg font-semibold">Compare RIG</h1>
+            <p className="text-sm text-gray-600 font-mono">with {hashId}</p>
+          </div>
+        </div>
+
+        <button className="flex items-center gap-2 px-4 py-2 text-red-500 hover:bg-gray-100 rounded-lg">
+          
+          <span>Add to watchlist</span>
+          <div className='p-1 rounded-full bg-red-400'>
+          <Heart className="w-5 h-5 text-white" />
+          </div>
+        
         </button>
-        <h2 className="text-lg font-medium">Compare RIG</h2>
       </div>
 
       <div className="flex flex-col gap-8">

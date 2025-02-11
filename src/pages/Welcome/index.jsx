@@ -169,6 +169,7 @@ const Dashboard = () => {
   const [showRIGDetails, setShowRIGDetails] = useState(false);
   const [showPriceModal, setShowPriceModal] = useState(false);
   const [showLeaderboardModal, setShowLeaderboardModal] = useState(false);
+  const [showTopUpModal, setShowTopUpModal] = useState(false);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -306,6 +307,7 @@ const Dashboard = () => {
         isOpen={showLeaderboardModal} 
         onClose={() => setShowLeaderboardModal(false)} 
       />
+      
     </div>
   );
 };
