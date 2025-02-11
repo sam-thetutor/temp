@@ -2,6 +2,123 @@ import React from 'react';
 import { Search, Home, Heart } from 'lucide-react';
 import { X, Copy } from 'lucide-react';
 
+
+const MinerTable = ({ isOpen, onClose }) => {
+  if (!isOpen) return null;
+  
+  const minerData = [
+    { pid: "yckou-24b36-....cs2eh-gqe", mined: 10, activeMiners: "59/72" },
+    { pid: "yckou-24b36-....cs2eh-gqe", mined: 10, activeMiners: "59/72" },
+    { pid: "yckou-24b36-....cs2eh-gqe", mined: 10, activeMiners: "59/72" },
+    { pid: "yckou-24b36-....cs2eh-gqe", mined: 10, activeMiners: "59/72" },
+    { pid: "yckou-24b36-....cs2eh-gqe", mined: 10, activeMiners: "59/72" },
+    { pid: "yckou-24b36-....cs2eh-gqe", mined: 10, activeMiners: "59/72" },
+    { pid: "yckou-24b36-....cs2eh-gqe", mined: 10, activeMiners: "59/72" },
+    { pid: "yckou-24b36-....cs2eh-gqe", mined: 10, activeMiners: "59/72" }
+  ];
+
+  return (
+    <div className="fixed inset-0 bg-black/50 flex justify-center z-50">
+      <div className="bg-white rounded-b-xl w-full max-w-3xl transform transition-transform duration-300">
+        {/* Header */}
+        <div className="bg-slate-800 text-white px-4 py-3 flex justify-between items-center">
+          <h2 className="text-lg">Miner Details</h2>
+          <button onClick={onClose} className="bg-red-500 rounded-full p-1">
+            <X size={16} className="text-white" />
+          </button>
+        </div>
+
+        {/* Table Content */}
+        <div className="p-6">
+          <table className="w-full">
+            <thead>
+              <tr className="border-b">
+                <th className="text-left py-2 px-4 font-medium text-gray-600">PID</th>
+                <th className="text-left py-2 px-4 font-medium text-gray-600">Mined (10)</th>
+                <th className="text-left py-2 px-4 font-medium text-gray-600">Active Miners</th>
+                <th className="text-left py-2 px-4 font-medium text-gray-600">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {minerData.map((miner, index) => (
+                <tr key={index} className="border-b last:border-b-0">
+                  <td className="py-3 px-4 font-mono text-sm">{miner.pid}</td>
+                  <td className="py-3 px-4">{miner.mined}</td>
+                  <td className="py-3 px-4">
+                    <span className="bg-yellow-100 px-2 py-1 rounded text-sm">
+                      {miner.activeMiners}
+                    </span>
+                  </td>
+                  <td className="py-3 px-4">
+                    <div className="flex gap-2">
+                      <button className="p-1.5 bg-green-100 rounded hover:bg-green-200 transition-colors">
+                        <Copy size={16} className="text-green-600" />
+                      </button>
+                      <button className="p-1.5 bg-red-100 rounded hover:bg-red-200 transition-colors">
+                        <X size={16} className="text-red-600" />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          {/* Pagination */}
+          <div className="flex gap-2 justify-center mt-6">
+            <button className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center">
+              1
+            </button>
+            <button className="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center">
+              2
+            </button>
+            <button className="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center">
+              3
+            </button>
+            <button className="w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center">
+              4
+            </button>
+            <button className="px-4 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center">
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
+const SearchPIDModal = ({ isOpen, onClose }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+      <div className="w-full max-w-lg bg-white rounded-xl shadow-lg transform transition-all">
+        <div className="p-4 flex items-center justify-between border-b">
+          <h2 className="text-lg font-medium">Search PID</h2>
+          <button onClick={onClose} className="text-gray-400 hover:text-gray-500">
+            <X size={20} />
+          </button>
+        </div>
+        <div className="p-6">
+          <div className="flex gap-2">
+            <input
+              type="text"
+              placeholder="tslv6-ucy5f-fuqbs-kc2qn-e34h5-jpp4t-2lq3d-kzlr7-d5g"
+              className="flex-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+            <button className="px-4 py-2 bg-yellow-400 text-black rounded-lg font-medium">
+              Paste
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
 const FundICPModal = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
     
@@ -213,6 +330,8 @@ const Header = () => {
     const [isProfileModalOpen, setIsProfileModalOpen] = React.useState(false);
     const [isRingPIDsModalOpen, setIsRingPIDsModalOpen] = React.useState(false);
     const [isFundICPModalOpen, setIsFundICPModalOpen] = React.useState(false);
+    const [isSearchModalOpen, setIsSearchModalOpen] = React.useState(false);
+    const [isMinerTableOpen, setIsMinerTableOpen] = React.useState(false);
   return (
     <div className="bg-slate-900/95 m-3 mx-12 mt-8 rounded-xl p-2 flex justify-between items-center ">
       {/* Logo */}
@@ -229,10 +348,10 @@ const Header = () => {
         <button className="p-2 bg-white hover:bg-slate-800 rounded-full">
           <Home className="w-5 h-5 " />
         </button>
-        <button className="p-2 bg-white hover:bg-slate-800 rounded-full">
+        <button className="p-2 bg-white hover:bg-slate-800 rounded-full" onClick={() => setIsSearchModalOpen(true)}>
           <Search className="w-5 h-5 " />
         </button>
-        <button className="p-2 bg-red-400 hover:bg-slate-800 rounded-full">
+        <button className="p-2 bg-red-400 hover:bg-slate-800 rounded-full" onClick={() => setIsMinerTableOpen(true)}>
           <Heart className="w-5 h-5 text-white" />
         </button>
 
@@ -284,9 +403,11 @@ const Header = () => {
           </div>
         </button>
       </div>
+         <SearchPIDModal isOpen={isSearchModalOpen} onClose={() => setIsSearchModalOpen(false)} />
         <FundICPModal isOpen={isFundICPModalOpen} onClose={() => setIsFundICPModalOpen(false)} />
         <ProfileModal isOpen={isProfileModalOpen} onClose={() => setIsProfileModalOpen(false)} />
         <RingPIDsModal isOpen={isRingPIDsModalOpen} onClose={() => setIsRingPIDsModalOpen(false)} />
+        <MinerTable isOpen={isMinerTableOpen} onClose={() => setIsMinerTableOpen(false)} />
     </div>
   );
 };

@@ -115,10 +115,119 @@ const TopUpMinersModal = ({ isOpen, onClose }) => {
     </div>
   );
 };
+const Modal = ({ title, children, onClose, isDone }) => {
+  return (
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4">
+      <div className="bg-white rounded-xl w-full max-w-md overflow-hidden">
+        <div className="flex items-center justify-between p-3 border-b">
+          <h2 className="text-base font-medium">{title}</h2>
+          <div className="flex items-center gap-2">
+            {isDone && (
+              <>
+                <span className="text-green-600">Done</span>
+                <div className="w-5 h-5 rounded-full bg-green-600 flex items-center justify-center">
+                  <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+              </>
+            )}
+            <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+              <X size={18} />
+            </button>
+          </div>
+        </div>
+        <div className="p-4">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+};
 
+const CompareWithMyRIG = ({ isOpen, onClose }) => {
+  const [searchValue, setSearchValue] = useState('');
+  
+  if (!isOpen) return null;
+  
+  return (
+    <div>
+      <Modal title="Compare With My RIG" onClose={onClose}>
+        <div className="flex gap-2">
+          <input
+            type="text"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="tslv6-ucy5f-fuqbs-kc2qn-e34h5-jpp4t-2lq3d-kzlr7-d5g"
+          />
+          <button className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </button>
+        </div>
+      </Modal>
+    </div>
+  );
+};
+
+const NewWatchlistModal = ({ isOpen, onClose }) => {
+  const [value, setValue] = useState('');
+  
+  if (!isOpen) return null;
+  
+  return (
+    <Modal title="New watchlist" onClose={onClose} isDone={true}>
+      <div className="relative">
+        <input
+          type="text"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter Recipient Address"
+        />
+        <button
+          className="absolute right-3 top-1/2 -translate-y-1/2 text-orange-400 hover:text-orange-500 font-medium"
+        >
+          Paste
+        </button>
+      </div>
+    </Modal>
+  );
+};
+
+const NewAddNewPID = ({ isOpen, onClose }) => {
+  const [value, setValue] = useState('');
+  
+  if (!isOpen) return null;
+  
+  return (
+    <Modal title="Add New PID" onClose={onClose} isDone={true}>
+      <div className="relative">
+        <input
+          type="text"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter Recipient Address"
+        />
+        <button
+          className="absolute right-3 top-1/2 -translate-y-1/2 text-orange-400 hover:text-orange-500 font-medium"
+        >
+          Paste
+        </button>
+      </div>
+    </Modal>
+  );
+};
 
 const RIGDetails = ({ address }) => {
   const [isTopUpModalOpen, setIsTopUpModalOpen] = useState(false);
+  const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+  const [isWatchlistModalOpen, setIsWatchlistModalOpen] = useState(false);
+  const [isNewPIDModalOpen,setNewPIDModalOpen]=useState(false)
+
   const stats = [
     { label: "Total Blocks Mined", value: "3066" },
     { label: "Total Cycles Burned", value: "38.89T" },
@@ -164,18 +273,18 @@ const RIGDetails = ({ address }) => {
           
         </div>
         <div className="flex items-center gap-4">
-          <button className="flex items-center gap-2 text-red-500">
+          <button className="flex items-center gap-2 text-red-500" onClick={()=>setIsWatchlistModalOpen(true)}>
             <span>Add to watchlist</span>
             <Heart size={18} />
           </button>
-          <button className="flex items-center gap-2 text-blue-600">
+          <button className="flex items-center gap-2 text-blue-600"  onClick={()=>setNewPIDModalOpen(true)} >
             <span>Add to my PIDs</span>
             <Eye size={18} />
           </button>
           <button className="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-lg" onClick={() => setIsTopUpModalOpen(true)}>
             Top up Miner
           </button>
-          <button className="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-lg">
+          <button className="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-lg" onClick={()=>setIsSearchModalOpen(true)} >
             Compare with my RIG
           </button>
         </div>
@@ -229,6 +338,9 @@ const RIGDetails = ({ address }) => {
         <button className="px-4 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center">Next</button>
       </div>
       <TopUpMinersModal isOpen={isTopUpModalOpen} onClose={() => setIsTopUpModalOpen(false)} />
+      <CompareWithMyRIG isOpen={isSearchModalOpen} onClose={() => setIsSearchModalOpen(false)} />
+      <NewWatchlistModal isOpen={isWatchlistModalOpen} onClose={() => setIsWatchlistModalOpen(false)} />
+       <NewAddNewPID isOpen={isNewPIDModalOpen} onClose={()=>setNewPIDModalOpen(false )} />
     </div>
   );
 };
