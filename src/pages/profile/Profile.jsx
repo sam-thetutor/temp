@@ -2,9 +2,11 @@ import React from 'react';
 import { Search, MessageCircle } from 'lucide-react';
 import { X, Copy } from 'lucide-react';
 import { NotificationCarousel } from '../../components/notifications/Notification';
+// import Header from '../../components/Header/ProfileHeader';
 import Header from '../../components/Header/DashboardHeader';
 import  { useState } from 'react';
-import RIGDetails from '../../components/RiGDetails/Rigdetails';
+import { ArrowLeft } from 'lucide-react';
+
 
 
 
@@ -156,7 +158,7 @@ const LeaderboardModal = ({ isOpen, onClose }) => {
 };
 
 
-const Dashboard = () => {
+const Profile = () => {
   const stats = [
     { label: "Time Since Last Block:", value: "136" },
     { label: "Active Miners", value: "35" },
@@ -165,75 +167,86 @@ const Dashboard = () => {
     { label: "Avg Block Burn", value: "262.23T" }
   ];
 
-  const [searchQuery, setSearchQuery] = useState('');
-  const [showRIGDetails, setShowRIGDetails] = useState(false);
   const [showPriceModal, setShowPriceModal] = useState(false);
   const [showLeaderboardModal, setShowLeaderboardModal] = useState(false);
-  const [showTopUpModal, setShowTopUpModal] = useState(false);
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (searchQuery) {
-      setShowRIGDetails(true);
-    }
-  };
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 via-blue-50 to-pink-50/30">
       <Header/>
 
-      <div className="bg-white/40 py-2">
-        <div className="flex gap-6 overflow-x-auto whitespace-nowrap px-4">
-          <NotificationCarousel/>
+      <div className="flex justify-between items-center px-12 py-3">
+        <div className="flex items-center gap-2">
+          <button className="p-1 hover:bg-gray-100 rounded-full">
+            <ArrowLeft className="w-5 h-5" />
+          </button>
+          <span className="font-medium">Manage Profile</span>
         </div>
+        <button className="text-red-500 hover:text-red-600 flex items-center gap-1">
+          Log out
+          <div className="w-5 h-5 bg-red-100 rounded-full flex items-center justify-center">
+            <span className="text-red-500 text-sm">⨉</span>
+          </div>
+        </button>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 pt-4 flex flex-col gap-6 ">
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4  mx-8 ">
-          {/* Last Winner Card */}
-          <div className="bg-teal-900 text-white p-4 rounded-xl">
-            <div className="flex items-center justify-between mb-4">
-              <div className="text-sm">Last Winner</div>
-              <div className="text-xs text-gray-300">56 seconds ago</div>
-            </div>
-            
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-6 h-6 rounded-full bg-gray-400"></div>
-              <div className="text-sm font-mono">yckou-24b36-.....-cs2eh-qge</div>
-              <div className="w-5 h-5 bg-green-500 rounded flex items-center justify-center text-xs">5</div>
-            </div>
+        <div className="bg-white rounded-xl shadow-lg p-6 mx-6">
+  {/* Header */}
+      <div className="flex justify-between items-center mb-6">
+      <h2 className="text-lg font-bold text-gray-800">Profile Info</h2>
+      <button className="text-orange-500 font-medium hover:underline">Edit Profile</button>
+     </div>
 
-            <div className="space-y-2">
-              <div className="flex justify-between text-sm">
-                <span>Cycles Burned:</span>
-                <span className="font-mono">55.56T</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span>Reward:</span>
-                <span className="text-yellow-400 font-mono">600 BOB</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span>Total Cycles Burned:</span>
-                <span className="font-mono">295.22T</span>
-              </div>
-            </div>
-          </div>
+  {/* Bobits Principle ID */}
+  <div className="flex items-center bg-gray-100 p-4 rounded-lg mb-6">
+    <div className="w-8 h-8 bg-black text-white flex items-center justify-center rounded-full mr-4">
+      <span className="text-lg font-bold">₿</span>
+    </div>
+    <span className="text-sm text-gray-700 font-mono overflow-hidden text-ellipsis">
+      satoshi-hsnqs-s3pse-ieofy-hekpg-4pfnq-rdthu-jx4pf-5jwj5-w5ifp-jqe
+    </span>
+  </div>
 
-          {/* New Block Stats Card - Spans 2 columns */}
-          <div className="md:col-span-2 bg-white rounded-xl p-4">
-            <h2 className="text-center font-mono font-bold mb-4 text-lg tracking-wide">NEW BLOCK</h2>
-            <p className="text-center text-gray-500 mb-6">Lacus amet, elementum ex. Ut venenatis eget urna, amet</p>
-            
-            <div className="grid grid-cols-5 gap-4">
-            {stats.map((stat, index) => (
-                <div key={index} className="text-center  border-1 border-slate-400 rounded-sm">
-                  <div className="text-sm text-gray-900 mb-2 ">{stat.label}</div>
-                  <div className="font-mono text-2xl font-bold rounde">{stat.value}</div>
-                </div>
-              ))}
-            </div>
-          </div>
+  {/* Additional Info */}
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    {/* RIG Visibility */}
+    <div className="flex items-center justify-between bg-gray-50 p-4 rounded-lg">
+      <span className="text-sm text-gray-600">RIG Visibility</span>
+      <div className="flex items-center">
+        <span className="text-sm text-gray-600 mr-2">Enable to Others</span>
+        <div className="relative">
+          <input type="checkbox" id="toggleVisibility" className="sr-only" />
+          <div className="block w-10 h-6 bg-gray-300 rounded-full"></div>
+          <div className="dot absolute left-1 top-1 bg-green-500 w-4 h-4 rounded-full transition"></div>
         </div>
+      </div>
+    </div>
+
+    {/* Joined */}
+    <div className="flex items-center bg-gray-50 p-4 rounded-lg">
+    <div className="flex items-center rounded-full p-2">
+        <img
+          src="/images/profile.png"
+          alt="BOBITS Logo"
+          className="h-8 object-contain rounded-full"
+        />
+      </div>
+      <div>
+        <div className="text-sm text-gray-500">Joined</div>
+        <div className="text-base font-bold text-gray-800">06 February 2025</div>
+      </div>
+    </div>
+
+    {/* Number of Rigs */}
+    <div className="flex items-center bg-gray-50 p-4 rounded-lg">
+      <div className="text-center">
+        <div className="text-sm text-gray-500">Number of Rigs</div>
+        <div className="text-2xl font-bold text-gray-800">12</div>
+      </div>
+    </div>
+  </div>
+    </div>
 
 
         {/* Search Section */}
@@ -257,7 +270,6 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-
 
         {/* Bottom Navigation */}
         <div className="flex justify-center gap-4">
@@ -297,8 +309,6 @@ const Dashboard = () => {
       </div>
 
          {/* Modals */}
-      
-      </div>
       <BlockPriceModal 
         isOpen={showPriceModal} 
         onClose={() => setShowPriceModal(false)} 
@@ -307,9 +317,9 @@ const Dashboard = () => {
         isOpen={showLeaderboardModal} 
         onClose={() => setShowLeaderboardModal(false)} 
       />
-      
+      </div>
     </div>
   );
 };
 
-export default Dashboard;
+export default Profile;

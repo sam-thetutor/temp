@@ -5,6 +5,7 @@ import { NotificationCarousel } from '../../components/notifications/Notificatio
 import Header from '../../components/Header/DashboardHeader';
 import  { useState } from 'react';
 import RIGDetails from '../../components/RiGDetails/Rigdetails';
+import RIGComparison from '../../components/RiGDetails/CompareRiG';
 
 
 
@@ -156,7 +157,8 @@ const LeaderboardModal = ({ isOpen, onClose }) => {
 };
 
 
-const Dashboard = () => {
+
+const CompareResult = () => {
   const stats = [
     { label: "Time Since Last Block:", value: "136" },
     { label: "Active Miners", value: "35" },
@@ -169,7 +171,6 @@ const Dashboard = () => {
   const [showRIGDetails, setShowRIGDetails] = useState(false);
   const [showPriceModal, setShowPriceModal] = useState(false);
   const [showLeaderboardModal, setShowLeaderboardModal] = useState(false);
-  const [showTopUpModal, setShowTopUpModal] = useState(false);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -181,13 +182,13 @@ const Dashboard = () => {
     <div className="min-h-screen bg-gradient-to-b from-blue-50 via-blue-50 to-pink-50/30">
       <Header/>
 
-      <div className="bg-white/40 py-2">
+      <div className=" py-2">
         <div className="flex gap-6 overflow-x-auto whitespace-nowrap px-4">
           <NotificationCarousel/>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 pt-4 flex flex-col gap-6 ">
+      <div className="max-w-7xl mx-auto px-4 pt-4 flex flex-col gap-6  ">
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4  mx-8 ">
           {/* Last Winner Card */}
@@ -237,27 +238,9 @@ const Dashboard = () => {
 
 
         {/* Search Section */}
-        <div className="mb-16">
-          <div className="text-center text-gray-600 mb-3">Search BOB Address</div>
-          <div className="flex justify-center">
-            <div className="relative w-full max-w-xl">
-              <input
-                type="text"
-                placeholder="Enter Principal BOB Address"
-                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <div className="absolute right-0 top-0 h-full flex">
-                <button className="px-4 text-orange-400 font-medium">
-                  Paste
-                </button>
-                <button className="h-full px-4 bg-black text-white rounded-r-lg">
-                  <Search size={20} />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
+       
+  
+       <RIGComparison/>
 
         {/* Bottom Navigation */}
         <div className="flex justify-center gap-4">
@@ -307,9 +290,9 @@ const Dashboard = () => {
         isOpen={showLeaderboardModal} 
         onClose={() => setShowLeaderboardModal(false)} 
       />
-      
+     
     </div>
   );
 };
 
-export default Dashboard;
+export default CompareResult;
