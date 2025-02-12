@@ -85,7 +85,19 @@ const LandingPage = () => {
               <div className="text-yellow-400 text-4xl font-bold">$250</div>
             </div>
 
-            {/* BOBITS Button */}
+    
+            {/* <button className="bg-yellow-400 hover:bg-yellow-500 rounded-xl pl-2 pr-8 py-3 transition-colors">
+              <div className="flex items-center gap-2">
+                <img 
+                  src="images/cartonn.png" 
+                  alt="mascot" 
+                  className="w-10 h-10"
+                />
+                <span className="text-black font-bold text-xl">BOBITS</span>
+              </div>
+            </button> */}
+
+               {/* BOBITS Button */}
             <button className="bg-yellow-400 hover:bg-yellow-500 rounded-xl pl-2 pr-8 py-3 transition-colors">
               <div className="flex items-center gap-2">
                 <img 
