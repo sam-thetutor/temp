@@ -34,7 +34,7 @@ const LandingPage = () => {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Top Section */}
-      <div className="bg-gradient-to-b from-white via-blue-50 to-[#e8f0f5] pb-2 pt-16">     
+      <div className="bg-gradient-to-b from-white via-blue-50 to-[#d9edf9] pb-2 pt-16">     
         {/* Logo */}
         <div className="text-center mb-4">
           <img 
@@ -140,6 +140,7 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
+      
     </div>
   );
 };
