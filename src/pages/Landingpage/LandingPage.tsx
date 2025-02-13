@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NotificationCarousel } from '../../components/notifications/Notification';
+import { motion } from "framer-motion";
 
 const LandingPage = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -28,10 +29,12 @@ const LandingPage = () => {
     return () => clearInterval(timer);
   }, []);
 
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Top Section */}
-      <div className="bg-gradient-to-b from-white via-blue-50 to-[#e8f0f5] pb-2 pt-16">     
+      <div className="bg-gradient-to-b from-white via-blue-50 to-[#d9edf9] pb-2 pt-16">     
         {/* Logo */}
         <div className="text-center mb-4">
           <img 
@@ -85,20 +88,59 @@ const LandingPage = () => {
               <div className="text-yellow-400 text-4xl font-bold">$250</div>
             </div>
 
+    
             {/* BOBITS Button */}
-            <button className="bg-yellow-400 hover:bg-yellow-500 rounded-xl pl-2 pr-8 py-3 transition-colors">
-              <div className="flex items-center gap-2">
-                <img 
-                  src="images/cartonn.png" 
-                  alt="mascot" 
-                  className="w-10 h-10"
-                />
-                <span className="text-black font-bold text-xl">BOBITS</span>
-              </div>
-            </button>
+            <div className="relative flex items-center justify-center">
+      <motion.button
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className="bg-yellow-400 hover:bg-yellow-500 rounded-xl py-3 
+          transition-colors flex items-center gap-2 relative overflow-visible"
+        animate={{
+          width: isHovered ? "auto" : "auto",
+          paddingLeft: isHovered ? "0.5rem" : "0.5rem",
+          paddingRight: isHovered ? "1.5rem" : "2rem",
+        }}
+        transition={{ 
+          duration: 0.3,
+          delay: isHovered ? 0.3 : 0
+        }}
+      >
+        <motion.img
+          src="images/cartonn.png"
+          alt="mascot"
+          className="w-10 h-10"
+          initial={{ x: 0 }}
+          animate={{ x: isHovered ? -60 : 0 }}
+          transition={{ duration: 0.5 }}
+        />
+
+        <motion.span
+          className="text-black font-bold text-xl whitespace-nowrap"
+          animate={{ x: isHovered ? -20 : 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          BOBITS
+        </motion.span>
+
+        <motion.div
+          className="absolute right-2 w-6 h-6 bg-white rounded-full flex items-center justify-center"
+          animate={{ opacity: isHovered ? 1 : 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <span className="text-black font-bold text-lg">
+            {isHovered ? '→' : ''}
+          </span>
+        </motion.div>
+      </motion.button>
+    </div>
+
+
+
           </div>
         </div>
       </div>
+      
     </div>
   );
 };

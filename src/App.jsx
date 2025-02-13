@@ -15,12 +15,12 @@ function App() {
 
   return (
     <>
-      {/* <LandingPage/> */}
+      <LandingPage/>
       {/* <LogoutPage/> */}
       {/* <Profile/> */}
       {/* <Dashboard/> */}
-      {/* <CompareResult/> */}
-      <SearchResult/>
+      {/* <CompareResult/>
+      <SearchResult/> */}
     </>
   )
 }
