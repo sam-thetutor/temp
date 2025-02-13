@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NotificationCarousel } from '../../components/notifications/Notification';
+import { motion } from "framer-motion";
 
 const LandingPage = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -27,6 +28,8 @@ const LandingPage = () => {
 
     return () => clearInterval(timer);
   }, []);
+
+  const [clicked, setClicked] = useState(false);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -86,28 +89,45 @@ const LandingPage = () => {
             </div>
 
     
-            {/* <button className="bg-yellow-400 hover:bg-yellow-500 rounded-xl pl-2 pr-8 py-3 transition-colors">
-              <div className="flex items-center gap-2">
-                <img 
-                  src="images/cartonn.png" 
-                  alt="mascot" 
-                  className="w-10 h-10"
-                />
-                <span className="text-black font-bold text-xl">BOBITS</span>
-              </div>
-            </button> */}
+            {/* BOBITS Button */}
+            <div className="relative flex items-center justify-center">
+  {/* Button with Image and Text */}
+  <button
+    onClick={() => setClicked(!clicked)}
+    className="bg-yellow-400 hover:bg-yellow-500 rounded-xl pl-2 pr-8 py-3 transition-colors flex items-center gap-2 relative overflow-visible"
+  >
+    {/* Image starts inside the button */}
+    <motion.img
+      src="images/cartonn.png"
+      alt="mascot"
+      className="w-10 h-10"
+      initial={{ x: 0 }} // Start at normal position
+      animate={{ x: clicked ? -60 : 0 }} // Move left on click
+      transition={{ duration: 0.5 }}
+    />
 
-               {/* BOBITS Button */}
-            <button className="bg-yellow-400 hover:bg-yellow-500 rounded-xl pl-2 pr-8 py-3 transition-colors">
-              <div className="flex items-center gap-2">
-                <img 
-                  src="images/cartonn.png" 
-                  alt="mascot" 
-                  className="w-10 h-10"
-                />
-                <span className="text-black font-bold text-xl">BOBITS</span>
-              </div>
-            </button>
+    {/* Text shifting slightly to the right */}
+    <motion.span
+      className="text-black font-bold text-xl"
+      animate={{ x: clicked ? 10 : 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      BOBITS
+    </motion.span>
+
+    {/* Arrow icon that appears when clicked */}
+    <motion.span
+      className="ml-2 text-white font-bold text-2xl"  // Ensures space for arrow, white, bold, and bigger
+      animate={{ opacity: clicked ? 1 : 0 }} // Show the arrow when clicked
+      transition={{ duration: 0.3 }}
+    >
+      {clicked ? '→' : ''}
+    </motion.span>
+  </button>
+</div>
+
+
+
           </div>
         </div>
       </div>
