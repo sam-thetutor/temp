@@ -29,7 +29,7 @@ const LandingPage = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const [clicked, setClicked] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -91,40 +91,49 @@ const LandingPage = () => {
     
             {/* BOBITS Button */}
             <div className="relative flex items-center justify-center">
-  {/* Button with Image and Text */}
-  <button
-    onClick={() => setClicked(!clicked)}
-    className="bg-yellow-400 hover:bg-yellow-500 rounded-xl pl-2 pr-8 py-3 transition-colors flex items-center gap-2 relative overflow-visible"
-  >
-    {/* Image starts inside the button */}
-    <motion.img
-      src="images/cartonn.png"
-      alt="mascot"
-      className="w-10 h-10"
-      initial={{ x: 0 }} // Start at normal position
-      animate={{ x: clicked ? -60 : 0 }} // Move left on click
-      transition={{ duration: 0.5 }}
-    />
+      <motion.button
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className="bg-yellow-400 hover:bg-yellow-500 rounded-xl py-3 
+          transition-colors flex items-center gap-2 relative overflow-visible"
+        animate={{
+          width: isHovered ? "auto" : "auto",
+          paddingLeft: isHovered ? "0.5rem" : "0.5rem",
+          paddingRight: isHovered ? "1.5rem" : "2rem",
+        }}
+        transition={{ 
+          duration: 0.3,
+          delay: isHovered ? 0.3 : 0
+        }}
+      >
+        <motion.img
+          src="images/cartonn.png"
+          alt="mascot"
+          className="w-10 h-10"
+          initial={{ x: 0 }}
+          animate={{ x: isHovered ? -60 : 0 }}
+          transition={{ duration: 0.5 }}
+        />
 
-    {/* Text shifting slightly to the right */}
-    <motion.span
-      className="text-black font-bold text-xl"
-      animate={{ x: clicked ? 10 : 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      BOBITS
-    </motion.span>
+        <motion.span
+          className="text-black font-bold text-xl whitespace-nowrap"
+          animate={{ x: isHovered ? -20 : 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          BOBITS
+        </motion.span>
 
-    {/* Arrow icon that appears when clicked */}
-    <motion.span
-      className="ml-2 text-white font-bold text-2xl"  // Ensures space for arrow, white, bold, and bigger
-      animate={{ opacity: clicked ? 1 : 0 }} // Show the arrow when clicked
-      transition={{ duration: 0.3 }}
-    >
-      {clicked ? '→' : ''}
-    </motion.span>
-  </button>
-</div>
+        <motion.div
+          className="absolute right-2 w-6 h-6 bg-white rounded-full flex items-center justify-center"
+          animate={{ opacity: isHovered ? 1 : 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <span className="text-black font-bold text-lg">
+            {isHovered ? '→' : ''}
+          </span>
+        </motion.div>
+      </motion.button>
+    </div>
 
 
 
