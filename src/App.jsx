@@ -8,6 +8,7 @@ import Dashboard from './pages/Welcome'
 import Profile from './pages/profile/Profile'
 import SearchResult from './pages/page/SearchResultPage'
 import CompareResult from './pages/page/CompareResultPage'
+import TopUpHistory from './components/History/History'
 
 
 function App() {
@@ -15,7 +16,8 @@ function App() {
 
   return (
     <>
-      <LandingPage/>
+    <TopUpHistory/>
+      {/* <LandingPage/> */}
       {/* <LogoutPage/> */}
       {/* <Profile/> */}
       {/* <Dashboard/> */}
